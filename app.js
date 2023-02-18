@@ -43,11 +43,17 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
 
+  // Comprobar si es un error de validación 
+  if (err.array){
+    const errorInfo = err.errors[0];
+    err.message = `Error en ${errorInfo.location}, parámetro ${errorInfo.param} ${errorInfo.msg} `
+
+  }
+
   res.status(err.status || 500);
   
     // VERIFICAMOS si lo que ha fallado es una petición al API
   // devuelvo el error en formato JSON
- 
   if (req.originalUrl.startsWith('/apiv1/')){
     res.json({error: err.message});
     
