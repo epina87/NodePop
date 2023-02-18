@@ -15,15 +15,16 @@ router.get('/', async (req, res, next)=>{
         const limit  = req.query.limit;
         // Ordenar
         const sort   = req.query.sort;
-
+/*
         const filtro = {};
 
         if (filterByName){filtro.tag = filterByName;}
         if (filterByage){filtro.venta = filterByage;}
         if (filterByage){filtro.nombre = filterByage;}
+         */
 
         //const agentes = await Agente.lista(filtro,skip,limit,sort,fields);
-        const anuncios = await Anuncio.find(objectFilter)
+        const anuncios = await Anuncio.find()
 
         res.json({results: anuncios});
 

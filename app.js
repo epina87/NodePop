@@ -45,7 +45,7 @@ app.use(function(err, req, res, next) {
   
     // VERIFICAMOS si lo que ha fallado es una petición al API
   // devuelvo el error en formato JSON
-  console.log('error ->', req.originalUrl) // /api/agentes
+ 
   if (req.originalUrl.startsWith('/apiv1/')){
     res.json({error: err.message});
     

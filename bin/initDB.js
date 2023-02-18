@@ -32,21 +32,21 @@ async function initAnuncios() {
         "nombre": "iPhone 3GS",
         "venta": false,
         "precio": 50.00,
-        "foto": "iphone.png",
+        "foto": "iphone.jpg",
         "tags": [ "lifestyle", "mobile"]
     },
     {
         "nombre": "Samsung 2GS",
         "venta": false,
         "precio": 30.00,
-        "foto": "samsung.png",
+        "foto": "samsung.jpg",
         "tags": [ "lifestyle", "mobile"]
     },
     {
         "nombre": "Samsungmini 2GS",
         "venta": false,
         "precio": 60.00,
-        "foto": "samsungmini.png",
+        "foto": "samsungmini.jpg",
         "tags": [ "lifestyle", "mobile"]
     },{
         "nombre": "Moto",
