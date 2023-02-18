@@ -8,6 +8,9 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
-
+    <h2>Lista de tags</h2>
+    <% tags.forEach(tag => { %>
+      <p>Tag: <%= tag %></p>
+    <% }) %>
   </body>
 </html>
