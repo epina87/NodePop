@@ -29,15 +29,9 @@ router.get('/',async function(req, res, next) {
       if (filterBynombre){filtro.nombre = new RegExp('^' + filterBynombre, "i");}
       if (filterByprecio){filtro.precio = functionFiltroPorPrecio(filterByprecio)}
 
-
-
-
       const anuncios = await Anuncio.lista(filtro,skip,limit,sort);
 
-      console.log(anuncios)
 
-        
-    //const anuncios = await Anuncio.find();
     
       anuncios.forEach(function(anuncio) {
         anuncio.foto = rutImg + anuncio.foto
@@ -60,9 +54,7 @@ router.get('/',async function(req, res, next) {
 
 // GET /tags 
 router.get('/tags', function(req, res, next) {
-  res.locals.tags = ['work',' lifestyle', 'motor','mobile'];
-
-  res.render('tags');
+   res.render('tags');
 });
 
 

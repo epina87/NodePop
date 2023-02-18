@@ -3,6 +3,7 @@ const router = express.Router();
 const Anuncio = require('../../models/Anuncio');
 const functionFiltroPorPrecio  = require('../functionRoutes/functionFilter')
 
+
 // GET /apiv1/anuncios
 // Devuelve una lista de anuncios
 router.get('/', async (req, res, next)=>{
@@ -27,8 +28,6 @@ router.get('/', async (req, res, next)=>{
 
     
         const anuncios = await Anuncio.lista(filtro,skip,limit,sort);
-
-
         
         res.json({results: anuncios});
 
@@ -47,5 +46,26 @@ router.get('/tags', function(req, res, next) {
     res.json({Tags: tags});
   
   });
+
+
+//POST /apiv1/anuncios (body)
+// Crea un anuncio
+router.post('/',async(req,res,next)=>{
+    try {
+        const anuncioData = req.body;
+        // creamos una instancia de Anuncio
+        const anuncio = new Anuncio(anuncioData);
+
+        // la persistimos(guardar) en la BD
+        const anuncioGuardado = await anuncio.save();
+        // Retornamos anuncio nuevo
+        res.json({ result: anuncioGuardado });
+       
+    } catch (error) {
+        next(error); 
+    }
+});
+
+
 
 module.exports = router;

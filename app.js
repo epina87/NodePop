@@ -15,6 +15,8 @@ app.set('x-powered-by',false) //evitar que muestre el servidor express en el bro
 
 //Variables Globales
 app.locals.title = 'NodePop'
+app.locals.tags  = ['work',' lifestyle', 'motor','mobile'];
+
 
 app.use(logger('dev'));
 app.use(express.json());
