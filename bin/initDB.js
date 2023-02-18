@@ -26,41 +26,41 @@ async function initAnuncios() {
         "venta": true,
         "precio": 230.15,
         "foto": "bici.jpg",
-        "tags": [ "lifestyle", "motor"]
+        "tag": [ "lifestyle", "motor"]
     },
     {
         "nombre": "iPhone 3GS",
         "venta": false,
         "precio": 50.00,
         "foto": "iphone.jpg",
-        "tags": [ "lifestyle", "mobile"]
+        "tag": [ "lifestyle", "mobile"]
     },
     {
         "nombre": "Samsung 2GS",
         "venta": false,
         "precio": 30.00,
         "foto": "samsung.jpg",
-        "tags": [ "lifestyle", "mobile"]
+        "tag": [ "lifestyle", "mobile"]
     },
     {
         "nombre": "Samsungmini 2GS",
         "venta": false,
         "precio": 60.00,
         "foto": "samsungmini.jpg",
-        "tags": [ "lifestyle", "mobile"]
+        "tag": [ "lifestyle", "mobile"]
     },{
         "nombre": "Moto",
         "venta": true,
         "precio": 450.25,
-        "foto": "Moto.jpg",
-        "tags": [ "lifestyle", "motor"]
+        "foto": "moto.jpg",
+        "tag": [ "lifestyle", "motor"]
     },
     {
         "nombre": "Avión",
         "venta": true,
         "precio": 670.90,
-        "foto": "Avion.jpg",
-        "tags": [ "work", "motor"]
+        "foto": "avion.jpg",
+        "tag": [ "work", "motor"]
     }
   ]);
   console.log(`Creados ${inserted.length} anuncios`);

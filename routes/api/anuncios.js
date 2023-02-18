@@ -3,6 +3,7 @@ const router = express.Router();
 const Anuncio = require('../../models/Anuncio');
 
 // GET /apiv1/anuncios
+// Devuelve una lista de anuncios
 router.get('/', async (req, res, next)=>{
     try {
         // filtros
@@ -11,21 +12,23 @@ router.get('/', async (req, res, next)=>{
         const filterBynombre  = req.query.nombre;
         const filterByprecio = req.query.precio;
         // paginación 
-        const start  = req.query.start;
+        const skip  = req.query.start;
         const limit  = req.query.limit;
         // Ordenar
         const sort   = req.query.sort;
-/*
+
         const filtro = {};
 
-        if (filterByName){filtro.tag = filterByName;}
-        if (filterByage){filtro.venta = filterByage;}
-        if (filterByage){filtro.nombre = filterByage;}
-         */
+        if (filterBytag){filtro.tag = {$in:[filterBytag]};}
+        if (filterByventa){filtro.venta = filterByventa;}
+        if (filterBynombre){filtro.nombre = new RegExp('^' + filterBynombre, "i");}
+        if (filterByprecio){filtro.precio = filtrarPorPrecio(filterByprecio)}
 
-        //const agentes = await Agente.lista(filtro,skip,limit,sort,fields);
-        const anuncios = await Anuncio.find()
+    
+        const anuncios = await Anuncio.lista(filtro,skip,limit,sort);
 
+
+        
         res.json({results: anuncios});
 
     } catch (error) {
@@ -33,5 +36,38 @@ router.get('/', async (req, res, next)=>{
         
     }
 });
+
+function filtrarPorPrecio (filterByprecio){
+    if (filterByprecio.includes("-")){
+        const position = filterByprecio.indexOf("-")
+        if (position===0){
+            
+            const filterByprecioSlice = filterByprecio.slice(1,filterByprecio.length)            
+            return {$lte:filterByprecioSlice}   
+
+        }else{
+            if (position===filterByprecio.length-1){
+                const filterByprecioSlice = filterByprecio.slice(0,filterByprecio.length-1)
+                return {$gte:filterByprecioSlice}
+            }else{
+                const filterByprecioSliceInit = filterByprecio.slice(0,position)
+                const filterByprecioSliceEnd  = filterByprecio.slice(position+1,filterByprecio.length)
+
+                return {$gte: filterByprecioSliceInit, $lte: filterByprecioSliceEnd}
+            }   
+        }
+    }else{
+        return filterByprecio
+    }    
+
+}
+
+// GET /apiv1/anuncios/tags 
+// devuelve una json de tags
+router.get('/tags', function(req, res, next) {
+    tags=['work',' lifestyle', 'motor','mobile']
+    res.json({Tags: tags});
+  
+  });
 
 module.exports = router;

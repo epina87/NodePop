@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
+
 const Anuncio = require('../models/Anuncio');
-const rutImg = "http://127.0.0.1:3000/images/anuncios/"
+const rutImg = "../images/anuncios/"
 
 /* GET home page. */
 router.get('/',async function(req, res, next) {
@@ -11,9 +12,12 @@ router.get('/',async function(req, res, next) {
     
     anuncios.forEach(function(anuncio) {
       anuncio.foto = rutImg + anuncio.foto
+      if(anuncio.venta){
+        anuncio.tipo = "Venta"
+      }else{
+        anuncio.tipo = "Busqueda"
+      }
     }); 
-
-    console.log(anuncios)
 
     res.locals.anuncios = anuncios;      
     res.render('index')

@@ -6,8 +6,19 @@ const anuncioShema = mongoose.Schema({
     venta:Boolean,
     precio:Number,
     foto:String,
-    tags:[String]
+    tag:[String]
 });
+
+anuncioShema.statics.lista = function(filtro,skip,limit,sort){
+    const query = Anuncio.find(filtro); // methodos thenables
+    query.skip(skip);
+    query.limit(limit);
+    query.sort(sort);
+
+    return query.exec();
+}
+
+
 
 const Anuncio = mongoose.model('anuncios',anuncioShema)
 

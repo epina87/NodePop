@@ -10,9 +10,14 @@
 
     <h2>Lista de Anuncios</h2>
     <% anuncios.forEach(anuncio => { %>
-      <p><%= anuncio.nombre %> vale <%= anuncio.precio %> Euros </p>
-      <img src= "<%= anuncio.foto %>"/>
+      <div>
+        <p>
+          <br>Tipo Anuncio <b><%= anuncio.tipo %> </b>
+          <br><%= anuncio.nombre %> vale <%= anuncio.precio %> Euros  </p>
+          <img src= "<%= anuncio.foto %>"/>
+          <p> tags: <b> <%= anuncio.tag %> </b></p>
+      </div>    
     <% }) %>
-
+    
   </body>
 </html>

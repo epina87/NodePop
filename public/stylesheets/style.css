@@ -8,6 +8,10 @@ a {
 }
 
 img{
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
+}
+
+div{
+  border-top: 1px solid black;
 }
