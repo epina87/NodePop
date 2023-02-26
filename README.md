@@ -9,7 +9,7 @@ Initialize the database with:
 ```sh
 npm run initDB
 ```
-```
+
 
 Sart in development mode:
 ```sh
@@ -34,7 +34,7 @@ In la console go to MongoDB folder and:
 ## API Methods
 
 ### GET/apiv1/anuncio
-
+```
 {
   "results": [
      {
@@ -50,4 +50,67 @@ In la console go to MongoDB folder and:
             "__v": 0
         },
   ]  
-}    
+} 
+``` 
+***
+### GET/apiv1/anuncio/tags
+```
+{
+  "Tags": [
+    "work",
+    "lifestyle",
+    "motor",
+    "mobile"
+  ]
+}
+```
+***
+### POST /apiv1/anuncios
+##### New register
+
+![New register](/public/images/document/NewAnuncio.JPG)
+
+### List of records with tags
+#### Possible filter combinations
+* tag
+* sale or search (venta = true/false)
+* price range- between values (precio=10-50),
+value greater than (precio=10-), 
+value less than (precio=-50), value equal to (precio=50)
+* Name of the article that begins with (nombre=sa)
+* Start of displayed article (start=0)
+* Number of items to display (limit=3)
+* Order of articles (sort=precio)
+
+#### Example of the request
+```
+http://localhost:3000/apiv1/anuncios?tag=mobile&venta=false&nombre=sa&precio=60-&start=0&limit=3&sort=precio
+```
+
+
+## BROWSER
+
+### List of records in the browser
+```
+http://localhost:3000/
+```
+### List of available tags
+```
+http://localhost:3000/tags
+```
+### List of records filter in the browser
+
+#### Possible filter combinations
+* tag
+* sale or search (venta = true/false)
+* price range- between values (precio=10-50),
+value greater than (precio=10-), 
+value less than (precio=-50), value equal to (precio=50)
+* Name of the article that begins with (nombre=sa)
+* Start of displayed article (start=0)
+* Number of items to display (limit=3)
+* Order of articles (sort=precio)
+
+#### Example of the request
+```
+http://localhost:3000?tag=mobile&venta=false&nombre=sa&precio=60-&start=0&limit=3&sort=precio
