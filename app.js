@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const AuthController = require('./routes/api/authController')
 
 require('./lib/connectMongoose'); // Cuando arranque la conexión monggose se conecte a la base de datos
 
@@ -24,10 +25,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const authController = new AuthController() 
 /**
  * Rutas del API 
  */
 app.use('/apiv1/anuncios',require('./routes/api/anuncios'));
+app.post('/apiv1/authenticate',authController.postAPI )
 
 /**
  * Rutas del Website
