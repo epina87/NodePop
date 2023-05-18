@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const AuthController = require('./routes/api/authController')
+const jwtAuthMiddleware = require('./lib/jwtAuthMiddleware')
 
 require('./lib/connectMongoose'); // Cuando arranque la conexión monggose se conecte a la base de datos
 
@@ -29,7 +30,7 @@ const authController = new AuthController()
 /**
  * Rutas del API 
  */
-app.use('/apiv1/anuncios',require('./routes/api/anuncios'));
+app.use('/apiv1/anuncios',jwtAuthMiddleware, require('./routes/api/anuncios'));
 app.post('/apiv1/authenticate',authController.postAPI )
 
 /**

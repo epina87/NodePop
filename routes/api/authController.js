@@ -14,8 +14,6 @@ async postAPI(req, res, next) {
       const usuario = await Usuario.findOne({ email: email });
 
       
-      
-
       // si no lo encuentro o no coincide la contraseña -->error
       if (!usuario || !(await usuario.comparePassword(password)) ) {
         res.json({ error: 'invalid credentials'});
@@ -33,6 +31,7 @@ async postAPI(req, res, next) {
       res.json({jwt:{token}})
     } catch (err) {
       next(err);
+
     }
 
   }
