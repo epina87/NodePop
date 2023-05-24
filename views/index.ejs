@@ -1,23 +1,26 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+<% include header.ejs %>
 
-    <h2>Lista de Anuncios</h2>
-    <% anuncios.forEach(anuncio => { %>
-      <div>
-        <p>
-          <br>Tipo Anuncio <b><%= anuncio.tipo %> </b>
-          <br><%= anuncio.nombre %> vale <%= anuncio.precio %> Euros  </p>
-          <img src= "<%= anuncio.foto %>"/>
-          <p> tags: <b> <%= anuncio.tag %> </b></p>
-      </div>    
-    <% }) %>
-    
-  </body>
-</html>
+<main>
+  <p class="welcom">
+    ¡<%= __('Welcome to our announcement community') %>! ¡<%= __('Welcome to')
+    %> <%= title %>!
+  </p>
+
+  <h2><%= __(' Announcement List') %></h2>
+  <% anuncios.forEach(anuncio => { %>
+  <div class="addConten">
+    <p>
+        
+      <br /> 
+      <%= __('type add') %>:
+      <b><%= anuncio.tipo %> </b>
+      <br /><%= anuncio.nombre %> <%= __('costs') %> <%= anuncio.precio %> Euros
+
+    </p>
+    <img src="<%= anuncio.foto %>" />
+    <p><%= __('tags') %>: <b> <%= anuncio.tag %> </b></p>
+  </div>
+  <% }) %>
+</main>
+
+<% include footer.ejs %>

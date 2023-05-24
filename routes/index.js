@@ -36,9 +36,9 @@ router.get('/',async function(req, res, next) {
       anuncios.forEach(function(anuncio) {
         anuncio.foto = rutImg + anuncio.foto
         if(anuncio.venta){
-          anuncio.tipo = "Venta"
+          anuncio.tipo = res.__('Sale')
         }else{
-          anuncio.tipo = "Busqueda"
+          anuncio.tipo = res.__('Buys')
         }
     }); 
 

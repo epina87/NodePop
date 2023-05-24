@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const AuthController = require('./routes/api/authController')
 const jwtAuthMiddleware = require('./lib/jwtAuthMiddleware')
+const i18n = require('./lib/i18nConfigure')
+
 
 require('./lib/connectMongoose'); // Cuando arranque la conexión monggose se conecte a la base de datos
 
@@ -33,11 +35,15 @@ const authController = new AuthController()
 app.use('/apiv1/anuncios',jwtAuthMiddleware, require('./routes/api/anuncios'));
 app.post('/apiv1/authenticate',authController.postAPI )
 
+
+
 /**
  * Rutas del Website
  */
+app.use(i18n.init);
 app.use('/',      require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/change-locale', require('./routes/change-locale'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
