@@ -7,7 +7,7 @@ npm install
 Copy .env.example to .env and customize your variables.
 
 ```sh
-    cp .env.example .env
+cp .env.example .env
 ```
 
 Initialize the database with:
